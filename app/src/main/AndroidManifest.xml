@@ -16,6 +16,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MainMenuActivity"
+            android:label="@string/title_activity_main_menu" >
+        </activity>
+        <activity
+            android:name=".SearchBangActivity"
+            android:label="@string/title_activity_search_bang" >
+        </activity>
+        <activity
+            android:name=".SearchMovieActivity"
+            android:label="@string/title_activity_search_movie" >
+        </activity>
+        <activity
+            android:name=".SearchDetailedActivity"
+            android:label="@string/title_activity_search_detailed" >
+        </activity>
     </application>
 
 </manifest>

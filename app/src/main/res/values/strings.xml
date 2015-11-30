@@ -3,4 +3,8 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_main_menu">Main Menu</string>
+    <string name="title_activity_search_bang">영화방 찾기</string>
+    <string name="title_activity_search_movie">영화 검색</string>
+    <string name="title_activity_search_detailed">상세 검색</string>
 </resources>
