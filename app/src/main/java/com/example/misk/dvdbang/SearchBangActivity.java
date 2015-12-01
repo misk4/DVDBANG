@@ -1,6 +1,7 @@
 package com.example.misk.dvdbang;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -45,7 +46,12 @@ public class SearchBangActivity extends Activity implements OnItemSelectedListen
                 city = cityInput.getText().toString();
                 dong=dongInput.getText().toString();
 
-                Log.d("",province);
+                String [] address = {province,city,dong};
+
+                Intent intent = new Intent(getApplicationContext(),SearchBangActivity2.class);
+                intent.putExtra("address",address);
+                startActivity(intent);
+
             }
         });
 
@@ -56,6 +62,8 @@ public class SearchBangActivity extends Activity implements OnItemSelectedListen
         switch(arg0.getId()){
             case R.id.spinner:
                 province = (String) arg0.getSelectedItem();
+                break;
+            default:break;
         }
 
 
@@ -86,5 +94,10 @@ public class SearchBangActivity extends Activity implements OnItemSelectedListen
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed(){
+        finish();
     }
 }

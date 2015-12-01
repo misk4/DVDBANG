@@ -71,4 +71,9 @@ public class SearchMovieActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onBackPressed(){
+        finish();
+    }
 }

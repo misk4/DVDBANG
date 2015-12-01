@@ -18,6 +18,7 @@ public class SearchDetailedActivity extends Activity implements AdapterView.OnIt
     Spinner spinnerGenre,spinnerYear,spinnerTime;
     ArrayAdapter adapterGenre,adapterYear,adapterTime;
     EditText keywordInput;
+    String genre,year,time,keyword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ public class SearchDetailedActivity extends Activity implements AdapterView.OnIt
         detailedSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                keyword = keywordInput.getText().toString();
             }
         });
 
@@ -48,8 +49,16 @@ public class SearchDetailedActivity extends Activity implements AdapterView.OnIt
     @Override
     public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3){
         switch(arg0.getId()){
-            case R.id.spinner:
+            case R.id.genreSpinner:
                 genre = (String) arg0.getSelectedItem();
+                break;
+            case R.id.movieTimeSpinner:
+                time=(String)arg0.getSelectedItem();
+                break;
+            case R.id.movieYearSpinner:
+                year=(String)arg0.getSelectedItem();
+                break;
+            default:break;
         }
 
 
@@ -80,5 +89,10 @@ public class SearchDetailedActivity extends Activity implements AdapterView.OnIt
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed(){
+        finish();
     }
 }
