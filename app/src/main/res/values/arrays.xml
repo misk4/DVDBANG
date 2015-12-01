@@ -13,4 +13,19 @@
         <item>전라남도</item>
         <item>제주도</item>
     </string-array>
+
+    <string-array name="genre">
+
+    </string-array>
+
+    <string-array name="time">
+
+    </string-array>
+
+    <string-array name="year">
+
+    </string-array>
+
+
+
 </resources>

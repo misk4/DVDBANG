@@ -16,27 +16,27 @@
             android:layout_height="70dp"
             android:text="영화방 찾기"
             android:id="@+id/searchBangButton"
-            android:layout_marginTop="51dp"
             android:textSize="30dp"
             android:layout_alignParentTop="true"
-            android:layout_alignStart="@+id/searchMovieButton" />
+            android:layout_alignStart="@+id/searchMovieButton"
+            android:layout_marginTop="50dp" />
 
         <Button
             android:layout_width="200dp"
             android:layout_height="70dp"
             android:text="영화 검색"
             android:id="@+id/searchMovieButton"
+            android:layout_marginTop="50dp"
+            android:textSize="30dp"
             android:layout_below="@+id/searchBangButton"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="53dp"
-            android:textSize="30dp" />
+            android:layout_centerHorizontal="true" />
 
         <Button
             android:layout_width="200dp"
             android:layout_height="70dp"
             android:text="상세 검색"
             android:id="@+id/searchDetailedButton"
-            android:layout_marginTop="53dp"
+            android:layout_marginTop="50dp"
             android:textSize="30dp"
             android:layout_below="@+id/searchMovieButton"
             android:layout_alignStart="@+id/searchMovieButton" />
@@ -46,9 +46,9 @@
             android:layout_height="70dp"
             android:text="종료"
             android:id="@+id/exitButton"
-            android:layout_alignParentBottom="true"
+            android:textSize="30dp"
+            android:layout_below="@+id/searchDetailedButton"
             android:layout_alignStart="@+id/searchDetailedButton"
-            android:layout_alignParentStart="false"
-            android:textSize="30dp" />
+            android:layout_marginTop="50dp" />
     </RelativeLayout>
 </RelativeLayout>
