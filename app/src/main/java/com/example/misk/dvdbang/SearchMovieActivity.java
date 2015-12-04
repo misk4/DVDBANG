@@ -1,6 +1,7 @@
 package com.example.misk.dvdbang;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,11 +36,16 @@ public class SearchMovieActivity extends Activity {
             public void onClick(View v) {
                 bang = bangInput.getText().toString();
                 movie = movieInput.getText().toString();
-                mydb= new DBManager(getApplicationContext(),"dvdbang.db",null,1);
-                mydb.getReadableDatabase();
+                mydb = new DBManager(getApplicationContext(), "dvdbang.db", null, 1);
+                if (mydb.movieExist(bang, movie)) {
+                    resultTextView.setTextColor(Color.BLUE);
+                    resultTextView.setText("찾으시는 영화가 있습니다.");
+                    positionButton.setVisibility(View.VISIBLE);
+                } else {
+                    resultTextView.setTextColor(Color.RED);
+                    resultTextView.setText("찾으시는 영화가 없습니다.");
 
-                resultTextView.setText("찾으시는 영화가 있습니다.");
-                positionButton.setVisibility(View.VISIBLE);
+                }
             }
         });
 

@@ -37,13 +37,6 @@ public class DBManager extends SQLiteOpenHelper {
 
         }
 
-        public void makeTable(String foodName)
-        {
-            SQLiteDatabase db = getWritableDatabase();
-            //db.execSQL("CREATE TABLE '"+foodName+"'(_id INTEGER PRIMARY KEY AUTOINCREMENT,ingredient TEXT);");
-            db.close();
-        }
-
         public void insert(String _query) {
             SQLiteDatabase db = getWritableDatabase();
             db.execSQL(_query);
@@ -95,6 +88,7 @@ public class DBManager extends SQLiteOpenHelper {
         int id;
 
         Cursor cursor = db.rawQuery("select _id from DVDBANG where name = '"+bang_name+"';",null);
+        cursor.moveToNext();
         id = cursor.getInt(0);
 
 
@@ -103,7 +97,7 @@ public class DBManager extends SQLiteOpenHelper {
         values.put("_id",id);
         values.put("name",movie_name);
 
-        db.insert("MOVIE", null, values);
+        db.insert("BANG_MOVIE", null, values);
         db.close();
     }
 
@@ -112,7 +106,7 @@ public class DBManager extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         String str="";
         Cursor cursor;
-        Log.d("44444444",""+province.isEmpty()+city.isEmpty()+dong.isEmpty());
+        Log.d("44444444", "" + province.isEmpty() + city.isEmpty() + dong.isEmpty());
         if(!province.isEmpty() && !city.isEmpty() && !dong.isEmpty()) {
             cursor = db.rawQuery("select * from DVDBANG where province = '" + province + "' AND city = '" + city + "' AND dong = '" + dong + "';", null);
         }else if(!province.isEmpty() && !city.isEmpty() && dong.isEmpty()){
@@ -145,6 +139,26 @@ public class DBManager extends SQLiteOpenHelper {
         Log.d("666666", "" + result.size());
         db.close();
         return result;
+    }
+
+    public boolean movieExist(String bangName, String movieName){
+        int id;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select _id from DVDBANG where name = '"+bangName+"';",null);
+        if(cursor.getCount() == 0){
+            return false;
+        }
+        cursor.moveToNext();
+        id = cursor.getInt(0);
+
+        cursor = db.rawQuery("select * from BANG_MOVIE where _id = '" + id + "' AND name = '" + movieName + "';",null);
+        if(cursor.getCount() == 0){
+            db.close();
+            return false;
+        }else{
+            db.close();
+            return true;
+        }
     }
 
 

@@ -29,19 +29,23 @@ public class MainActivity extends Activity {
         if(cursor.getCount() == 0){
             setInitialDataBang();
         }
+        db.close();
+
+        db =mydb.getReadableDatabase();
         cursor = db.query("MOVIE",null,null,null,null,null,null,null);
         startManagingCursor(cursor);
         if(cursor.getCount() == 0){
             setInitialDataMovie();
         }
+        db.close();
+
+        db=mydb.getReadableDatabase();
         cursor = db.query("BANG_MOVIE",null,null,null,null,null,null,null);
         startManagingCursor(cursor);
         if(cursor.getCount() == 0){
             setInitialDataBang_Movie();
         }
-
-
-
+        db.close();
 
         cursor.close();
 
@@ -51,31 +55,25 @@ public class MainActivity extends Activity {
     }
 
     private void setInitialDataBang(){
-        mydb.getWritableDatabase();
         String []tuple = getResources().getStringArray(R.array.DVDBANG);
         for(int i=0; i<tuple.length;i++){
             String []temp=tuple[i].split("/",7);
             mydb.addBang(temp[0],temp[1],temp[2],temp[3],temp[4],temp[5],temp[6]);
         }
-        mydb.close();
     }
     private void setInitialDataMovie(){
-        mydb.getWritableDatabase();
         String []tuple = getResources().getStringArray(R.array.MOVIE);
         for(int i=0; i<tuple.length;i++){
             String []temp=tuple[i].split("/",4);
             mydb.addMovie(temp[0],temp[1],temp[2],temp[3]);
         }
-        mydb.close();
     }
     private void setInitialDataBang_Movie(){
-        mydb.getWritableDatabase();
         String []tuple = getResources().getStringArray(R.array.BANG_MOVIE);
         for(int i=0; i<tuple.length;i++){
             String []temp=tuple[i].split("/",2);
             mydb.addBang_Movie(temp[0],temp[1]);
         }
-        mydb.close();
     }
 
 
