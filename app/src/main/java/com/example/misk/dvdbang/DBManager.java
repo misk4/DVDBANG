@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -25,8 +26,8 @@ public class DBManager extends SQLiteOpenHelper {
             //create table 테이블명 (컬럼)
             //db.execSQL("CREATE TABLE FOOD_LIST(_id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT);");
             db.execSQL("CREATE TABLE MOVIE (name TEXT PRIMARY KEY, genre TEXT, year INTEGER, runtime INTEGER);");
-            db.execSQL("CREATE TABLE DVDBANG(_id INTEGER PRIAMRY KEY AUTOINCREMENT, name TEXT, province TEXT, city TEXT, dong TEXT, addtionalAddress TEXT, phoneNumber TEXT, image INTEGER);");
-            db.execSQL("CREATE TABLE BANG_MOVIE(_id INTEGER, name TEXT, PRIMARY KEY(_id,name);");
+            db.execSQL("CREATE TABLE DVDBANG(_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, province TEXT, city TEXT, dong TEXT, addtionalAddress TEXT, phoneNumber TEXT, image INTEGER);");
+            db.execSQL("CREATE TABLE BANG_MOVIE(_id INTEGER, name TEXT, PRIMARY KEY(_id,name));");
 
 
         }
@@ -81,7 +82,7 @@ public class DBManager extends SQLiteOpenHelper {
         values.put("province",province);
         values.put("city",city);
         values.put("dong",dong);
-        values.put("realAddress",realAddress);
+        values.put("addtionalAddress",realAddress);
         values.put("phoneNumber",phoneNumber);
         values.put("image",image);
 
@@ -110,16 +111,19 @@ public class DBManager extends SQLiteOpenHelper {
         ArrayList<String> result = new ArrayList<String>();
         SQLiteDatabase db = this.getReadableDatabase();
         String str="";
-        Cursor cursor = db.rawQuery("select province,city,dong,addtionalAddress from DVDBANG where province = '"+province+"' AND city = '"+city+"' AND dong = '"+dong+"';", null);
+        Cursor cursor = db.rawQuery("select * from DVDBANG where province = '"+province+"' AND city = '"+city+"' AND dong = '"+dong+"';", null);
         while(cursor.moveToNext()) {
-            str += cursor.getString(0) + " "
-                    + cursor.getString(1) + " "
+            str += cursor.getString(1) + " "
                     + cursor.getString(2) + " "
-                    + cursor.getString(3)
+                    + cursor.getString(3) + " "
+                    + cursor.getString(4) + " "
+                    + cursor.getString(5)
                     + "\n";
+            Log.d("5551125251",str);
             result.add(str);
         }
 
+        Log.d("666666", "" + result.size());
         return result;
     }
 

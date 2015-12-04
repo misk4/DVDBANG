@@ -19,7 +19,7 @@ public class MainActivity extends Activity {
         startActivity(intent);
 
         mydb = new DBManager(getApplicationContext(),"dvdbang.db",null,1);
-        mydb.addBang("영화를 밝히는 사람들","경기도","평택시","평택동","49-1 3층","031",0);
+        mydb.addBang("영화를 밝히는 사람들","경기도","pt","ptd","49-1 3층","031",0);
 
     }
 
