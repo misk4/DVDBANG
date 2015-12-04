@@ -61,7 +61,12 @@ public class SearchBangActivity extends Activity implements OnItemSelectedListen
     public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3){
         switch(arg0.getId()){
             case R.id.spinner:
-                province = (String) arg0.getSelectedItem();
+                String temp= (String) arg0.getSelectedItem();
+                if(temp.equals("--선택해주십시오--")){
+                    province = "";
+                }else {
+                    province = temp;
+                }
                 break;
             default:break;
         }

@@ -25,9 +25,9 @@ public class DBManager extends SQLiteOpenHelper {
             //테이블 생성
             //create table 테이블명 (컬럼)
             //db.execSQL("CREATE TABLE FOOD_LIST(_id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT);");
-            db.execSQL("CREATE TABLE MOVIE (name TEXT PRIMARY KEY, genre TEXT, year INTEGER, runtime INTEGER);");
-            db.execSQL("CREATE TABLE DVDBANG(_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, province TEXT, city TEXT, dong TEXT, addtionalAddress TEXT, phoneNumber TEXT, image INTEGER);");
-            db.execSQL("CREATE TABLE BANG_MOVIE(_id INTEGER, name TEXT, PRIMARY KEY(_id,name));");
+            db.execSQL("CREATE TABLE IF NOT EXISTS MOVIE (name TEXT PRIMARY KEY, genre TEXT, year INTEGER, runtime INTEGER);");
+            db.execSQL("CREATE TABLE IF NOT EXISTS DVDBANG(_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, province TEXT, city TEXT, dong TEXT, addtionalAddress TEXT, phoneNumber TEXT, image INTEGER);");
+            db.execSQL("CREATE TABLE IF NOT EXISTS BANG_MOVIE(_id INTEGER, name TEXT, PRIMARY KEY(_id,name));");
 
 
         }
@@ -62,19 +62,19 @@ public class DBManager extends SQLiteOpenHelper {
             db.close();
         }
 
-    public void addMovie(String name, String genre, int year, int runtime){
+    public void addMovie(String name, String genre, String year, String runtime){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("name",name);
         values.put("genre",genre);
-        values.put("year",year);
-        values.put("runtime",runtime);
+        values.put("year",year.toString());
+        values.put("runtime",runtime.toString());
 
         db.insert("MOVIE", null, values);
         db.close();
     }
 
-    public void addBang(String name, String province, String city, String dong, String realAddress, String phoneNumber, int image){
+    public void addBang(String name, String province, String city, String dong, String realAddress, String phoneNumber, String image){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
@@ -84,7 +84,7 @@ public class DBManager extends SQLiteOpenHelper {
         values.put("dong",dong);
         values.put("addtionalAddress",realAddress);
         values.put("phoneNumber",phoneNumber);
-        values.put("image",image);
+        values.put("image",image.toString());
 
         db.insert("DVDBANG", null, values);
         db.close();
@@ -111,19 +111,39 @@ public class DBManager extends SQLiteOpenHelper {
         ArrayList<String> result = new ArrayList<String>();
         SQLiteDatabase db = this.getReadableDatabase();
         String str="";
-        Cursor cursor = db.rawQuery("select * from DVDBANG where province = '"+province+"' AND city = '"+city+"' AND dong = '"+dong+"';", null);
-        while(cursor.moveToNext()) {
-            str += cursor.getString(1) + " "
-                    + cursor.getString(2) + " "
-                    + cursor.getString(3) + " "
-                    + cursor.getString(4) + " "
-                    + cursor.getString(5)
-                    + "\n";
-            Log.d("5551125251",str);
-            result.add(str);
+        Cursor cursor;
+        Log.d("44444444",""+province.isEmpty()+city.isEmpty()+dong.isEmpty());
+        if(!province.isEmpty() && !city.isEmpty() && !dong.isEmpty()) {
+            cursor = db.rawQuery("select * from DVDBANG where province = '" + province + "' AND city = '" + city + "' AND dong = '" + dong + "';", null);
+        }else if(!province.isEmpty() && !city.isEmpty() && dong.isEmpty()){
+            cursor = db.rawQuery("select * from DVDBANG where province = '" + province + "' AND city = '" + city + "';", null);
+        }else if(!city.isEmpty() && !dong.isEmpty() && province.isEmpty()){
+            cursor = db.rawQuery("select * from DVDBANG where city = '" + city + "' AND dong = '" + dong + "';", null);
+        }else if(!province.isEmpty() && !dong.isEmpty() && city.isEmpty()){
+            cursor = db.rawQuery("select * from DVDBANG where province = '" + province + "' AND dong = '" + dong + "';", null);
+        }else if(!province.isEmpty() && city.isEmpty() && dong.isEmpty()){
+            cursor = db.rawQuery("select * from DVDBANG where province = '" + province + "';", null);
+        }else if(province.isEmpty() && !city.isEmpty() && dong.isEmpty()){
+            cursor= db.rawQuery("select * from DVDBANG where city = '" + city + "';", null);
+        }else if(province.isEmpty() && city.isEmpty() && !dong.isEmpty()){
+            cursor = db.rawQuery("select * from DVDBANG where dong = '" + dong + "';", null);
+        }else{
+            cursor = db.rawQuery("select * from DVDBANG;", null);
         }
+            while (cursor.moveToNext()) {
+                str += cursor.getString(1) + " "
+                        + cursor.getString(2) + " "
+                        + cursor.getString(3) + " "
+                        + cursor.getString(4) + " "
+                        + cursor.getString(5)
+                        + "\n";
+                Log.d("5551125251", str);
+                result.add(str);
+                str = "";
+            }
 
         Log.d("666666", "" + result.size());
+        db.close();
         return result;
     }
 

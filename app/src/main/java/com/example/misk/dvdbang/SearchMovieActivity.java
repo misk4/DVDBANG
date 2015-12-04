@@ -15,6 +15,7 @@ public class SearchMovieActivity extends Activity {
     TextView resultTextView;
     EditText bangInput,movieInput;
     String bang,movie;
+    DBManager mydb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,8 @@ public class SearchMovieActivity extends Activity {
             public void onClick(View v) {
                 bang = bangInput.getText().toString();
                 movie = movieInput.getText().toString();
+                mydb= new DBManager(getApplicationContext(),"dvdbang.db",null,1);
+                mydb.getReadableDatabase();
 
                 resultTextView.setText("찾으시는 영화가 있습니다.");
                 positionButton.setVisibility(View.VISIBLE);

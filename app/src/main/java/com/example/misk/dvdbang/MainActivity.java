@@ -1,7 +1,10 @@
 package com.example.misk.dvdbang;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,6 +12,7 @@ import android.view.MenuItem;
 public class MainActivity extends Activity {
 
     DBManager mydb;
+    SQLiteDatabase db;
     //MainMenuActivity mainMenu;
 
     @Override
@@ -16,12 +20,64 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
-        startActivity(intent);
+
 
         mydb = new DBManager(getApplicationContext(),"dvdbang.db",null,1);
-        mydb.addBang("영화를 밝히는 사람들","경기도","pt","ptd","49-1 3층","031",0);
+        db = mydb.getReadableDatabase();
+        Cursor cursor = db.query("DVDBANG",null,null,null,null,null,null,null);
+        startManagingCursor(cursor);
+        if(cursor.getCount() == 0){
+            setInitialDataBang();
+        }
+        cursor = db.query("MOVIE",null,null,null,null,null,null,null);
+        startManagingCursor(cursor);
+        if(cursor.getCount() == 0){
+            setInitialDataMovie();
+        }
+        cursor = db.query("BANG_MOVIE",null,null,null,null,null,null,null);
+        startManagingCursor(cursor);
+        if(cursor.getCount() == 0){
+            setInitialDataBang_Movie();
+        }
+
+
+
+
+        cursor.close();
+
+        startActivity(intent);
+        finish();
 
     }
+
+    private void setInitialDataBang(){
+        mydb.getWritableDatabase();
+        String []tuple = getResources().getStringArray(R.array.DVDBANG);
+        for(int i=0; i<tuple.length;i++){
+            String []temp=tuple[i].split("/",7);
+            mydb.addBang(temp[0],temp[1],temp[2],temp[3],temp[4],temp[5],temp[6]);
+        }
+        mydb.close();
+    }
+    private void setInitialDataMovie(){
+        mydb.getWritableDatabase();
+        String []tuple = getResources().getStringArray(R.array.MOVIE);
+        for(int i=0; i<tuple.length;i++){
+            String []temp=tuple[i].split("/",4);
+            mydb.addMovie(temp[0],temp[1],temp[2],temp[3]);
+        }
+        mydb.close();
+    }
+    private void setInitialDataBang_Movie(){
+        mydb.getWritableDatabase();
+        String []tuple = getResources().getStringArray(R.array.BANG_MOVIE);
+        for(int i=0; i<tuple.length;i++){
+            String []temp=tuple[i].split("/",2);
+            mydb.addBang_Movie(temp[0],temp[1]);
+        }
+        mydb.close();
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

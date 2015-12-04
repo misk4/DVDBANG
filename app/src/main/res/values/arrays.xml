@@ -14,6 +14,61 @@
         <item>제주도</item>
     </string-array>
 
+    <string-array name="MOVIE">
+        <item>글래디에이터/액션/2000/154</item>
+        <item>다크나이트/액션/2008/152</item>
+        <item>쇼생크탈출/드라마/1995/142</item>
+        <item>포레스트검프/드라마/1994/142</item>
+        <item>타이타닉/로맨스/1998/195</item>
+        <item>이프온리/로맨스/2004/96</item>
+        <item>엽기적인그녀/코미디/2001/122</item>
+        <item>트루먼쇼/코미디/1998/103</item>
+        <item>피터팬/가족/2004/105</item>
+        <item>스쿨오브락/가족/2004/108</item>
+        <item>드래곤길들이기/애니/2010/98</item>
+        <item>모노노케히메/애니/2003/135</item>
+        <item>죠스/공포/1978/124</item>
+        <item>장화홍련/공포/2003/118</item>
+        <item>나를찾아줘/스릴러/2014/149</item>
+        <item>프레스티지/공포/2006/130</item>
+        <item>나홀로집에/모험/1991/105</item>
+        <item>해리포터와죽음의성물2부/모험/2011/131</item>
+    </string-array>
+
+    <string-array name="DVDBANG">
+        <item>영화를 밝히는 사람들/경기도/평택시/평택동/49-1/031/0</item>
+        <item>흑석씨네마/서울특별시/동작구/흑석동/460-1/02-3/1</item>
+        <item>상도씨네마/서울특별시/동작구/상도동/120-3/02-4/2</item>
+        <item>무비룸/경기도/평택시/비전동/455-9/031-23/3</item>
+    </string-array>
+
+    <string-array name="BANG_MOVIE">
+        <item>영화를 밝히는 사람들/글래디에이터</item>
+        <item>영화를 밝히는 사람들/다크나이트</item>
+        <item>영화를 밝히는 사람들/쇼생크탈출</item>
+        <item>영화를 밝히는 사람들/엽기적인그녀</item>
+        <item>영화를 밝히는 사람들/피터팬</item>
+        <item>영화를 밝히는 사람들/장화홍련</item>
+        <item>영화를 밝히는 사람들/나홀로집에</item>
+        <item>흑석씨네마/해리포터와죽음의성물2부</item>
+        <item>흑석씨네마/나를찾아줘</item>
+        <item>흑석씨네마/글래디에이터</item>
+        <item>흑석씨네마/다크나이트</item>
+        <item>흑석씨네마/이프온리</item>
+        <item>흑석씨네마/타이타닉</item>
+        <item>상도씨네마/죠스</item>
+        <item>상도씨네마/드래곤길들이기</item>
+        <item>상도씨네마/트루먼쇼</item>
+        <item>상도씨네마/포레스트검프</item>
+        <item>무비룸/피터팬</item>
+        <item>무비룸/다크나이트</item>
+        <item>무비룸/해리포터와죽음의성물2부</item>
+        <item>무비룸/나홀로집에</item>
+        <item>무비룸/스쿨오브락</item>
+        <item>무비룸/쇼생크탈출</item>
+        <item>무비룸/드래곤길들이기</item>
+    </string-array>
+
     <string-array name="genre">
 
     </string-array>
