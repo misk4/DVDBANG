@@ -8,6 +8,7 @@ import android.view.MenuItem;
 
 public class MainActivity extends Activity {
 
+    DBManager mydb;
     //MainMenuActivity mainMenu;
 
     @Override
@@ -16,6 +17,9 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
         startActivity(intent);
+
+        mydb = new DBManager(getApplicationContext(),"dvdbang.db",null,1);
+        mydb.addBang("영화를 밝히는 사람들","경기도","평택시","평택동","49-1 3층","031",0);
 
     }
 

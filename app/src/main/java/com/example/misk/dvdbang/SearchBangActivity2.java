@@ -43,31 +43,11 @@ public class SearchBangActivity2 extends Activity implements OnItemClickListener
     }
 
     public void getList(String[] address){
+        DBManager mydb = new DBManager(getApplicationContext(),"dvdbang.db",null,1);
         province = address[0];
         city = address[1];
         dong = address[2];
-        list = new ArrayList<String>();
-
-        list.add("경기도 평택시 평택동 49-1");
-        list.add("경기도 평택시 평택동 49-12");
-        list.add("경기도 평택시 평택동 49-13");
-        list.add("경기도 평택시 평택동 49-14");
-        list.add("경기도 평택시 평택동 49-15");
-        list.add("경기도 평택시 평택동 49-16");
-        list.add("경기도 평택시 평택동 49-17");
-        list.add("경기도 평택시 평택동 49-18");
-        list.add("경기도 평택시 평택동 49-19");
-        list.add("경기도 평택시 평택동 49-10");
-        list.add("경기도 평택시 평택동 49-122");
-        list.add("경기도 평택시 평택동 49-133");
-
-        list.add("서울특별시 동작구 흑석동 111");
-        list.add("서울특별시 동작구 상도1동 460-14");
-        list.add("경기도 평택시 평택동 111");
-        list.add("경기도 평택시 비전1동 293");
-        list.add("서울특별시 송파구 방이동 33");
-        list.add("경기도 평택시 원평동 333");
-
+        list = mydb.getAddress(address[0],address[1],address[2]);
 
     }
     @Override
