@@ -25,6 +25,7 @@ public class SearchDetailedActivity extends Activity implements AdapterView.OnIt
     ArrayList<String> result;
     ArrayAdapter<String> adapter;
     ListView dataList;
+    DBManager mydb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +82,7 @@ public class SearchDetailedActivity extends Activity implements AdapterView.OnIt
     }
 
     public void findData(String genre, String year, String time, String keyword){
-        DBManager mydb = new DBManager(getApplicationContext(), "dvdbang.db", null, 1);
+        mydb = new DBManager(getApplicationContext(), "dvdbang.db", null, 1);
         int intYear,intTime;
         if(year.equals("------------------------")){
             intYear = 0;

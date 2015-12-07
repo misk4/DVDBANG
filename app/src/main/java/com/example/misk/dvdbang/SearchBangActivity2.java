@@ -22,6 +22,7 @@ public class SearchBangActivity2 extends Activity implements OnItemClickListener
     ListView bangListView;
     String province,city,dong;
     String [] address;
+    DBManager mydb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +44,7 @@ public class SearchBangActivity2 extends Activity implements OnItemClickListener
     }
 
     public void getList(String[] address){
-        DBManager mydb = new DBManager(getApplicationContext(),"dvdbang.db",null,1);
+        mydb = new DBManager(getApplicationContext(),"dvdbang.db",null,1);
         province = address[0];
         city = address[1];
         dong = address[2];
