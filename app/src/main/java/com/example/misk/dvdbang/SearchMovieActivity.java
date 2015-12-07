@@ -1,6 +1,7 @@
 package com.example.misk.dvdbang;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
@@ -44,6 +45,7 @@ public class SearchMovieActivity extends Activity {
                 } else {
                     resultTextView.setTextColor(Color.RED);
                     resultTextView.setText("찾으시는 영화가 없습니다.");
+                    positionButton.setVisibility(View.INVISIBLE);
 
                 }
             }
@@ -52,7 +54,8 @@ public class SearchMovieActivity extends Activity {
         positionButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getApplicationContext(),GoogleMap.class);
+                startActivity(intent);
             }
         });
 

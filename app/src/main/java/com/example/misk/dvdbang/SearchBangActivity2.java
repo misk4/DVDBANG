@@ -49,7 +49,7 @@ public class SearchBangActivity2 extends Activity implements OnItemClickListener
         city = address[1];
         dong = address[2];
         list = mydb.getAddress(address[0],address[1],address[2]);
-        Log.d("44444",""+list.size());
+        Log.d("44444", "" + list.size());
         mydb.close();
 
     }
@@ -85,5 +85,9 @@ public class SearchBangActivity2 extends Activity implements OnItemClickListener
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onBackPressed(){
+        finish();
     }
 }
