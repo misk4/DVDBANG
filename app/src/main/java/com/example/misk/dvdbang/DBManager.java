@@ -161,6 +161,50 @@ public class DBManager extends SQLiteOpenHelper {
         }
     }
 
+    public ArrayList<String> findMovie(String genre, int year, int time, String keyword){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select name, genre, year, runtime from MOVIE", null);
+        int movieYear,movieTime;
+
+
+        ArrayList<String> result= new ArrayList<String>();
+
+        while (cursor.moveToNext()) {
+            Log.d("11111111111111",""+ cursor.getString(0));
+            Log.d("11111111111111",""+ keyword);
+
+
+
+            if(!cursor.getString(0).contains(keyword) && !keyword.equals("")){
+                continue;
+            }
+            Log.d("2222222222224",""+ cursor.getString(1));
+            Log.d("2222222222224",""+ genre);
+            if(!cursor.getString(1).equals(genre) && !genre.equals("------------------------")){
+                continue;
+            }
+            Log.d("33333333333333333344",""+ cursor.getString(2));
+            Log.d("33333333333333333344",""+ year);
+            movieYear= Integer.parseInt(cursor.getString(2));
+            if(movieYear < year || movieYear > year + 10 && year != 0){
+                continue;
+            }
+            Log.d("55555555555544",""+ cursor.getString(3));
+            Log.d("55555555555544",""+ time);
+            movieTime = Integer.parseInt(cursor.getString(3));
+            if(movieTime > time && time != 0){
+                if(movieTime <= 140) {
+                    continue;
+                }
+            }
+
+            result.add(cursor.getString(0));
+        }
+
+        return result;
+
+    }
+
 
         public String PrintData() {
             SQLiteDatabase db = getReadableDatabase();

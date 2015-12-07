@@ -30,7 +30,7 @@
         <item>죠스/공포/1978/124</item>
         <item>장화홍련/공포/2003/118</item>
         <item>나를찾아줘/스릴러/2014/149</item>
-        <item>프레스티지/공포/2006/130</item>
+        <item>프레스티지/스릴러/2006/130</item>
         <item>나홀로집에/모험/1991/105</item>
         <item>해리포터와죽음의성물2부/모험/2011/131</item>
     </string-array>
@@ -70,15 +70,33 @@
     </string-array>
 
     <string-array name="genre">
+        <item>------------------------</item>
+        <item>액션</item>
+        <item>드라마</item>
+        <item>로맨스</item>
+        <item>코미디</item>
+        <item>가족</item>
+        <item>애니</item>
+        <item>공포</item>
+        <item>스릴러</item>
+        <item>모험</item>
 
     </string-array>
 
     <string-array name="time">
+        <item>------------------------</item>
+        <item>100 분 이하</item>
+        <item>120 분 이하</item>
+        <item>140 분 이하</item>
+        <item>140 분 초과</item>
 
     </string-array>
 
     <string-array name="year">
-
+        <item>------------------------</item>
+        <item>1990 년 대</item>
+        <item>2000 년 대</item>
+        <item>2010 년 대</item>
     </string-array>
 
 
