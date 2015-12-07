@@ -57,6 +57,8 @@ public class SearchBangActivity2 extends Activity implements OnItemClickListener
         switch(parentView.getId()){
             case R.id.bangListView:
                 String actualAddress=list.get(position);
+                Intent intent = new Intent(getApplicationContext(),GoogleMap.class);
+                startActivity(intent);
                 break;
             default:break;
         }
